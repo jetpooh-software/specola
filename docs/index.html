@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="JetPooh — a lightweight network proxy app built with C++ and wxWidgets.">
+  <meta name="theme-color" content="#0d0d0f">
+  <title>JetPooh — Lightweight Network Proxy</title>
+  <link rel="icon" type="image/png" href="https://jetpooh-software.github.io/jetpooh/favicon.png">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0d0d0f;
+      --panel: #17171a;
+      --line: #2a2a2f;
+      --text: #f7f4ee;
+      --muted: #a7a5a0;
+      --accent: #ff5a1f;
+      --accent-soft: #ff8a52;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 72% 22%, rgba(255, 90, 31, .12), transparent 26rem),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    a { color: inherit; }
+
+    .shell {
+      width: min(1080px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 82px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: -.02em;
+    }
+
+    .brand img {
+      width: 38px;
+      height: 38px;
+      object-fit: contain;
+    }
+
+    .github-link {
+      color: var(--muted);
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    .github-link:hover { color: var(--text); }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 400px);
+      gap: 72px;
+      align-items: center;
+      min-height: calc(100vh - 82px);
+      padding: 76px 0;
+    }
+
+    .eyebrow {
+      margin: 0 0 20px;
+      color: var(--accent-soft);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 720px;
+      margin: 0;
+      font-size: clamp(52px, 8vw, 94px);
+      line-height: .96;
+      letter-spacing: -.075em;
+    }
+
+    h1 span { color: var(--accent); }
+
+    .lede {
+      max-width: 610px;
+      margin: 30px 0 0;
+      color: var(--muted);
+      font-size: clamp(18px, 2.2vw, 22px);
+      line-height: 1.7;
+    }
+
+    .facts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 32px;
+    }
+
+    .facts span {
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: #d8d6d1;
+      font: 12px/1 ui-monospace, SFMono-Regular, Consolas, monospace;
+    }
+
+    .product {
+      position: relative;
+      padding: 34px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      background: linear-gradient(145deg, rgba(255,255,255,.045), rgba(255,255,255,.01));
+      box-shadow: 0 30px 80px rgba(0,0,0,.38);
+      text-align: center;
+    }
+
+    .product::before {
+      content: "";
+      position: absolute;
+      inset: -60% 10% auto;
+      height: 260px;
+      background: var(--accent);
+      filter: blur(100px);
+      opacity: .18;
+    }
+
+    .product img {
+      position: relative;
+      display: block;
+      width: min(100%, 280px);
+      margin: 0 auto 24px;
+      filter: drop-shadow(0 20px 24px rgba(0, 0, 0, .4));
+    }
+
+    .price-label {
+      margin: 0 0 7px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .price {
+      margin: 0;
+      font-size: 46px;
+      font-weight: 900;
+      letter-spacing: -.05em;
+    }
+
+    .price small {
+      color: var(--accent-soft);
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+
+    .fine-print {
+      margin: 13px 0 0;
+      color: #77757a;
+      font-size: 12px;
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 24px 0 36px;
+      border-top: 1px solid var(--line);
+      color: #77757a;
+      font-size: 12px;
+    }
+
+    @media (max-width: 760px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 46px;
+        min-height: auto;
+        padding: 64px 0 72px;
+      }
+
+      .product { padding: 26px; }
+      footer { flex-direction: column; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <div class="brand">
+        <img src="https://jetpooh-software.github.io/jetpooh/touch.png" alt="JetPooh panda icon">
+        <span>JetPooh</span>
+      </div>
+      <a class="github-link" href="https://github.com/jetpooh-software/jetpooh">GitHub ↗</a>
+    </header>
+
+    <main class="hero">
+      <section aria-labelledby="hero-title">
+        <p class="eyebrow">C++20 · wxWidgets · Technical Preview</p>
+        <h1 id="hero-title">Proxy networking,<br><span>without the weight.</span></h1>
+        <p class="lede">
+          JetPooh is a desktop network proxy built with C++ and wxWidgets.
+          It supports HTTP and SOCKS5 inbounds, plus Direct, Reject, Shadowsocks, VMess, Trojan, and SOCKS5 outbounds.
+        </p>
+        <div class="facts" aria-label="Project features">
+          <span>HTTP / SOCKS5 INBOUND</span>
+          <span>RULE · GLOBAL · DIRECT</span>
+          <span>6 OUTBOUNDS</span>
+        </div>
+      </section>
+
+      <aside class="product" aria-label="JetPooh pricing">
+        <img src="https://jetpooh-software.github.io/jetpooh/red-panda-1024.png" alt="JetPooh panda resting on orange tiles">
+        <p class="price-label">One-time purchase</p>
+        <p class="price">$19.9 <small>USD</small></p>
+        <p class="fine-print">A price tag only. No checkout attached.</p>
+      </aside>
+    </main>
+
+    <footer>
+      <span>JetPooh · wxWidgets network proxy</span>
+      <span>Built small. Runs quietly.</span>
+    </footer>
+  </div>
+</body>
+</html>
