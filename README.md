@@ -4,6 +4,8 @@
 Yet another simple proxy client, developed for network debugging and enhancement
 </div>
 
+<img width="2296" height="1667" alt="Snipaste_2026-09-22_19-39-50" src="https://github.com/user-attachments/assets/24bb389a-22ea-4479-aff6-1d1d94b12429" />
+
 ## Features
 
 - Lightweight desktop network proxy built with C++20 and wxWidgets.
